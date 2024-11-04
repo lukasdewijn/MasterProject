@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap');
+
 /* Globale font family */
 * {
   font-family: 'Quicksand', sans-serif;
@@ -49,18 +51,4 @@
   --jordy-blue: #AFCBFF;
   --oxford-blue: #0E1C36;
   --bice-blue: #3A6EA5;
-}
-
-.start-button {
-  background-color: var(--sandy-brown);
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.start-button:hover {
-  background-color: #e08439;
 }
