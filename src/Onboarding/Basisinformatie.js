@@ -35,7 +35,7 @@ const Basisinformatie = () => {
                 </div>
             </div>
             <div className="start-button-container">
-                <button className="start-button" onClick={() => navigate('/typehoreca')}>>Volgende</button>
+                <button className="start-button" onClick={() => navigate('/typehoreca')}>Volgende</button>
             </div>
         </Layout>
     );

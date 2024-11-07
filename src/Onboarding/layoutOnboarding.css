@@ -8,7 +8,7 @@
 }
 
 .layout-header {
-    padding: 4rem;
+    padding: 2rem;
     text-align: center;
 
 }
@@ -17,7 +17,7 @@
     color: var(--ivory);
     font-family: 'Quicksand', sans-serif;
     font-weight: 500; /*Medium bold*/
-    font-size: xxx-large;
+    font-size: 40px;
 }
 .layout-content{
     display: flex;
@@ -37,7 +37,7 @@
 .layout-content-container h1 {
     color: var(--oxford-blue);
     font-family: 'Quicksand', sans-serif;
-    font-size: 35px;
+    font-size: 32px;
     font-weight: 500; /*Medium bold*/
 }
 .layout-content-container h2 {
@@ -81,7 +81,7 @@
     font-family: 'Quicksand', sans-serif;
     font-size: 32px;
     font-weight: 500;
-    padding: 0.8rem 8rem;
+    padding: 0.6rem 6rem;
     border: none;
     border-radius: 30px;
     cursor: pointer;
