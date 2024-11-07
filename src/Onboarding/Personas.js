@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Layout from './layoutOnboarding';
 import './Personas.css';
 
+// Import images directly
 import Budgetbewust from '../profielen/Budgetbewust.png';
 import Fijnproever from '../profielen/Fijn-proever.png';
 import Gezondheidsbewuste from '../profielen/Gezondheidsbewuste.png';
@@ -33,7 +34,7 @@ const Personas = () => {
                 <div className="personas-grid">
                     {personas.map((persona, index) => (
                         <div key={index} className="persona-item">
-                            <img src={`./profielen/${persona.image}`} alt={persona.name} className="persona-image" />
+                            <img src={persona.image} alt={persona.name} className="persona-image" />
                             <div className="persona-info">
                                 <h3 className="persona-name">{persona.name}</h3>
                                 <p className="persona-description">{persona.description}</p>
@@ -43,7 +44,7 @@ const Personas = () => {
                 </div>
             </div>
             <div className="start-button-container">
-                <button className="start-button" onClick={() => navigate('/next-page')}>Volgende</button>
+                <button className="start-button" onClick={() => navigate('/clienteleanalysis')}>Volgende</button>
             </div>
         </Layout>
     );
