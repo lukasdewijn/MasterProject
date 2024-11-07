@@ -39,7 +39,7 @@ const Kenmerken = () => {
     return (
         <Layout title="Kenmerken" progress={60}>
             <div className="kenmerken-container">
-                <h1 style={{marginBottom: "4rem" }}>Duid alle kenmerken die bij uw zaak passen</h1>
+                <h1 style={{marginBottom: "1rem" }}>Duid alle kenmerken aan die bij uw zaak passen.</h1>
                 <div className="kenmerken-groepen">
                     {Object.keys(categories).map((category, index) => (
                         <div key={index} className="category-section">
@@ -60,7 +60,7 @@ const Kenmerken = () => {
                 </div>
             </div>
             <div className="start-button-container">
-                <button className="start-button" onClick={() => navigate('/next-page')}>Volgende</button>
+                <button className="start-button" onClick={() => navigate('/leeftijdsverdeling')}>Volgende</button>
             </div>
         </Layout>
     );

@@ -5,6 +5,9 @@ import ContactPage from './Onboarding/Basisinformatie';
 import TypeHoreca from "./Onboarding/TypeHoreca";
 import Zitplaatsen from "./Onboarding/Zitplaatsen";
 import Kenmerken from "./Onboarding/Kenmerken";
+import Leeftijdsverdeling from "./Onboarding/Leeftijdsverdeling";
+import Profielverdeling from "./Onboarding/Profielverdeling";
+import Personas from "./Onboarding/Personas";
 
 function App() {
     return (
@@ -16,6 +19,9 @@ function App() {
                 <Route path="/typehoreca" element={<TypeHoreca />} />
                 <Route path="/zitplaatsen" element={<Zitplaatsen/>} />
                 <Route path="/kenmerken" element={<Kenmerken/>} />
+                <Route path="/leeftijdsverdeling" element={<Leeftijdsverdeling/>} />
+                <Route path="/profielverdeling" element={<Profielverdeling/>} />
+                <Route path="/personas" element={<Personas/>} />
             </Routes>
         </Router>
     );
