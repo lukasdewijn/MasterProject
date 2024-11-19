@@ -14,6 +14,7 @@ import UploadMenu from "./Onboarding/UploadMenu";
 import MenuFrequency from "./Onboarding/MenuFrequency";
 import Promoties from "./Onboarding/Promoties";
 import MarketingStrategy from "./Onboarding/MarketingStrategy"
+import WrappedIntro from "./Wrapped/WrappedIntro"
 
 function App() {
     return (
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/menufrequency" element ={<MenuFrequency/>} />
                 <Route path="/promoties" element ={<Promoties/>}/>
                 <Route path="/marketingstrategy" element ={<MarketingStrategy/>}/>
+                <Route path="/wrapped1" element ={<WrappedIntro/>}/>
             </Routes>
         </Router>
     );
