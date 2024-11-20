@@ -15,7 +15,10 @@ import MenuFrequency from "./Onboarding/MenuFrequency";
 import Promoties from "./Onboarding/Promoties";
 import MarketingStrategy from "./Onboarding/MarketingStrategy"
 import WrappedIntro from "./Wrapped/WrappedIntro"
-
+import TopverkopersDrank from "./Wrapped/TopverkopersDrank";
+import PrijsOptimalisatie from "./Wrapped/PrijsOptimalisatie";
+import PrijsVergelijking from "./Wrapped/PrijsVergelijking";
+import Specialiteit from "./Wrapped/Specialiteit";
 function App() {
     return (
         <Router>
@@ -36,6 +39,10 @@ function App() {
                 <Route path="/promoties" element ={<Promoties/>}/>
                 <Route path="/marketingstrategy" element ={<MarketingStrategy/>}/>
                 <Route path="/wrapped1" element ={<WrappedIntro/>}/>
+                <Route path="/wrapped2" element ={<TopverkopersDrank/>}/>
+                <Route path="/wrapped3" element ={<PrijsOptimalisatie/>}/>
+                <Route path="/wrapped4" element ={<PrijsVergelijking/>}/>
+                <Route path="/wrapped5" element ={<Specialiteit/>}/>
             </Routes>
         </Router>
     );

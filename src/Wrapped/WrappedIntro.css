@@ -27,39 +27,44 @@
 }
 
 /* Colors for each card */
-.card.orange {
-    background-color: #FA954B;
-    z-index: 4;
+.card.sandybrown {
+    background-color: var(--sandy-brown);
+    z-index: 1;
+    top: 2rem;
+    height: 50rem;
 }
 
-.card.white {
-    background-color: #FFF7E9;
+.card.ivory {
+    background-color: var(--ivory);
+    z-index: 2;
+    top: 4rem;
+    height: 50rem;
+}
+
+.card.lightcyan {
+    background-color: #D7F9FF;
     z-index: 3;
-    top: 10%;
+    top: 6rem;
+    height: 50rem;
 }
 
 .card.jordyblue {
     background-color: #AFCBFF;
-    z-index: 2;
-    top: 20%;
-}
-
-.card.blue {
-    background-color: #A8D8FF;
-    z-index: 1;
-    top: 30%;
+    z-index: 4;
+    top: 8rem;
+    height: 50rem;
 }
 
 .card.biceblue {
     background-color: #3A6EA5;
     z-index: 5;
-    top: 30%;
-    height: 100%;
+    top: 10rem;
+    height: 50rem;
     bottom: auto;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 4rem
 }
 
 /* Content inside the dark blue card */
@@ -69,8 +74,8 @@
     font-family: 'Quicksand', sans-serif;
 }
 
-.card-content h1 {
-    font-size: 2rem;
+.card-content.h1.title {
+    font-size: 6rem;
     margin-bottom: 0.5rem;
 }
 
