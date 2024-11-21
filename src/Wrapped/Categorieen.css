@@ -1,0 +1,105 @@
+/* Container Styling */
+.categories-data-container {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--ivory);
+    color: var(--oxford-blue);
+    border-radius: 2rem 2rem 0 0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Title Styling */
+.categories-title-container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.categories-title-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.categories-title-container h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* Legend Styling */
+.categories-legend {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.legend-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.legend-circle.jouw-zaak {
+    background-color: #b3d9ff; /* Light blue */
+}
+
+.legend-circle.gemiddeld {
+    background-color: #003d99; /* Dark blue */
+}
+
+/* Bar Chart Styling */
+.categories-bars {
+    width: 100%;
+    max-width: 600px;
+}
+
+.category-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.category-name {
+    width: 25%;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.bars-container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bar {
+    position: relative;
+    height: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-right: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bar.jouw-zaak {
+    background-color: #b3d9ff; /* Light blue */
+}
+
+.bar.gemiddeld {
+    background-color: #003d99; /* Dark blue */
+}
+
+.bar-label {
+    position: absolute;
+    right: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}

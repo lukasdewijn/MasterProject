@@ -19,6 +19,8 @@ import TopverkopersDrank from "./Wrapped/TopverkopersDrank";
 import PrijsOptimalisatie from "./Wrapped/PrijsOptimalisatie";
 import PrijsVergelijking from "./Wrapped/PrijsVergelijking";
 import Specialiteit from "./Wrapped/Specialiteit";
+import HotForNextSeason from "./Wrapped/HotForNextSeason";
+import Categorieen from "./Wrapped/Categorieen";
 function App() {
     return (
         <Router>
@@ -43,6 +45,8 @@ function App() {
                 <Route path="/wrapped3" element ={<PrijsOptimalisatie/>}/>
                 <Route path="/wrapped4" element ={<PrijsVergelijking/>}/>
                 <Route path="/wrapped5" element ={<Specialiteit/>}/>
+                <Route path="/wrapped6" element ={<HotForNextSeason/>}/>
+                <Route path="/wrapped7" element ={<Categorieen/>}/>
             </Routes>
         </Router>
     );
