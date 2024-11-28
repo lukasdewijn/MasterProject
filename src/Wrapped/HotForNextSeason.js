@@ -18,32 +18,17 @@ const personas = {
     "Luxezoeker": Luxezoeker,
 };
 
-const menuItems = [
-    {
-        name: "Stella Artois",
-        description: "Bier v/d maand",
-        personas: ["Local-Lover", "Budgetbewust"],
-    },
-    {
-        name: "Ijs-Koffie",
-        description: "1+1 gratis",
-        personas: ["Trendvolger", "Milieu-bewuste"],
-    },
-    {
-        name: "Pornstar Martini",
-        description: "Gratis glas",
-        personas: ["Luxezoeker", "Fijn-Proever"],
-    },
-];
+const HotForNextSeason = ({ title, subtitle, menuItems }) => {
+    // Beperk het aantal items tot maximaal 3
+    const limitedMenuItems = menuItems.slice(0, 3);
 
-const HotForNextSeason = () => {
     return (
         <div className="hot-container">
             <div className="hot-title-container">
-                <h1>Hot for next season</h1>
-                <h2>Topmenu-items aanbevolen voor jouw zaak.</h2>
+                <h1>{title}</h1>
+                <h2>{subtitle}</h2>
             </div>
-            {menuItems.map((item, index) => (
+            {limitedMenuItems.map((item, index) => (
                 <div key={index} className="hot-item">
                     <div className="hot-item-info">
                         <div className="hot-item-name">{item.name}</div>
