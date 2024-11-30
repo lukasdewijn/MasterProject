@@ -8,13 +8,14 @@ html, body {
 }
 
 .page-container {
-    background: var(--ivory);
+
     padding-top: 2rem;
+    padding-bottom: -0.5rem;
     height: 100%;
 }
 
 .prijs-vergelijken-container {
-    background-color: var(--ivory);
+
     color: var(--oxford-blue);
     font-family: 'Quicksand', sans-serif;
     display: flex;

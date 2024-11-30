@@ -75,11 +75,12 @@ html, body {
     border-radius: 0 1rem 1rem 0;
 }
 
-.bier-item-4, .bier-item-5, .bier-item-6{
+.bier-item-4, .bier-item-5, .bier-item-6 {
     text-align: start;
-    align-self: flex-end;
     border-radius: 1rem 0 0 1rem;
+    margin-left: auto; /* Zorg dat ze naar rechts schuiven */
 }
+
 
 .bier-item-1 {
     background-color: var(--sandy-brown);
@@ -112,9 +113,9 @@ html, body {
     width: 90%; /* Longest */
 }
 .spacer1{
-    height: 4rem;
+    height: 6rem;
 }
 
 .spacer2 {
-    height: 8rem;
+    height: 20rem;
 }

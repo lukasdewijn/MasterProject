@@ -2,15 +2,14 @@ import React from 'react';
 import TopTemplate from './TopTemplate';
 import wrappedData from './wrappedData.json';
 
-const TopverkopersDrank = () => {
-    const data = wrappedData.wrapped2;
+const TopverkopersEten = () => {
+    const data = wrappedData.wrapped3; // Data voor wrapped3
 
     // Fallback als data niet beschikbaar is
     if (!data || !data.topItems || !data.bottomItems) {
-        console.log("Wrapped2 Data:", wrappedData.wrapped2);
+        console.log("Wrapped3 Data:", wrappedData.wrapped3);
 
-        return <h1>Data ontbreekt of is ongeldig voor Wrapped 2</h1>;
-
+        return <h1>Data ontbreekt of is ongeldig voor Wrapped 3</h1>;
     }
 
     return (
@@ -22,8 +21,7 @@ const TopverkopersDrank = () => {
             bottomSubtitle={data.bottomSubtitle}
             bottomItems={data.bottomItems}
         />
-
     );
 };
 
-export default TopverkopersDrank;
+export default TopverkopersEten;

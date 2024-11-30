@@ -1,10 +1,23 @@
 import React from 'react';
 import './Categorieen.css';
+import wrappedData from './wrappedData.json';
 
-const Categorieen = ({ title, subtitle, data }) => {
+const Categorieen = () => {
+    // Haal de data voor wrapped11 uit de JSON
+    const data = wrappedData.wrapped11;
+
+    // Controleer of data correct is geladen
+    if (!data || !data.categories) {
+        console.error("Data ontbreekt of is ongeldig voor Wrapped 11:", data);
+        return <h1>Geen data beschikbaar voor Categorieën</h1>;
+    }
+
+    // Gebruik de data uit de JSON
+    const { title, subtitle, categories } = data;
+
     // Bereken de maximale waarde
     const maxPercentage = Math.max(
-        ...data.map(item => Math.max(item.jouwZaak, item.gemiddeld))
+        ...categories.map(item => Math.max(item.jouwZaak, item.gemiddeld))
     );
 
     return (
@@ -23,7 +36,7 @@ const Categorieen = ({ title, subtitle, data }) => {
                     </div>
                 </div>
                 <div className="categories-bars">
-                    {data.map((item, index) => (
+                    {categories.map((item, index) => (
                         <div key={index} className="category-row">
                             <span className="category-name">{item.category}</span>
                             <div className="bars-container">
