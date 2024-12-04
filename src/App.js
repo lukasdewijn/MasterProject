@@ -19,7 +19,7 @@ import TopverkopersDrank from "./Wrapped/TopverkopersDrank";
 import PrijsOptimalisatie from "./Wrapped/PrijsOptimalisatie";
 import PrijsVergelijking from "./Wrapped/PrijsVergelijking";
 import Specialiteit from "./Wrapped/Specialiteit";
-import HotTemplate from "./Wrapped/HotTemplate";
+import DashboardLanding from "./Dashboard/DashboardLanding";
 import Categorieen from "./Wrapped/Categorieen";
 import TopverkopersEten from "./Wrapped/TopverkopersEten";
 import StijgersDrank from "./Wrapped/StijgersDrank";
@@ -89,6 +89,7 @@ function App() {
                 <Route path="/menufrequency" element={<MenuFrequency />} />
                 <Route path="/promoties" element={<Promoties />} />
                 <Route path="/marketingstrategy" element={<MarketingStrategy />} />
+                <Route path="/dashboard" element={<DashboardLanding/>}/>
                 {wrappedRoutes.map((route, index) => (
                     <Route
                         key={index}
