@@ -1,11 +1,31 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import './Sidebar.css';
 
 const Sidebar = () => {
+    const [openMenus, setOpenMenus] = useState({}); // Houd bij welke menu's geopend zijn
+
     const menuItems = [
-        { name: 'Soft drinks', path: '/soft-drinks' },
-        { name: 'Hot drinks', path: '/hot-drinks' },
-        { name: 'Cocktail', path: '/cocktail' },
+        {
+            name: 'Soft drinks',
+            subItems: [
+                { name: 'Coca-Cola', path: '/soft-drinks/coca-cola' },
+                { name: 'Sprite', path: '/soft-drinks/sprite' },
+            ],
+        },
+        {
+            name: 'Hot drinks',
+            subItems: [
+                { name: 'Coffee', path: '/hot-drinks/coffee' },
+                { name: 'Tea', path: '/hot-drinks/tea' },
+            ],
+        },
+        {
+            name: 'Cocktail',
+            subItems: [
+                { name: 'Mojito', path: '/cocktail/mojito' },
+                { name: 'Margarita', path: '/cocktail/margarita' },
+            ],
+        },
         { name: 'Top & worst sellers', path: '/top-worst' },
         { name: 'Gainers & losers', path: '/gainers-losers' },
         { name: 'Hot', path: '/hot' },
@@ -16,25 +36,52 @@ const Sidebar = () => {
         { name: 'Segment sizes', path: '/segment-sizes' },
     ];
 
+    const toggleMenu = (index) => {
+        setOpenMenus((prev) => ({
+            ...prev,
+            [index]: !prev[index],
+        }));
+    };
+
     return (
-        <nav style={{ width: '250px', backgroundColor: '#002147', padding: '1rem' }}>
-            <h1 style={{ color: '#fff', fontSize: '1.5rem' }}>Billy</h1>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
+        <nav className="sidebar">
+            {/* Header */}
+            <div className="sidebar-header">Billy</div>
+
+            {/* Menu */}
+            <ul className="menu">
                 {menuItems.map((item, index) => (
-                    <li key={index} style={{ margin: '1rem 0' }}>
-                        <NavLink
-                            to={item.path}
-                            style={({ isActive }) => ({
-                                color: isActive ? '#FFA500' : '#fff',
-                                textDecoration: 'none',
-                                fontWeight: isActive ? 'bold' : 'normal',
-                            })}
-                        >
-                            {item.name}
-                        </NavLink>
+                    <li key={index} className="menu-item">
+                        {item.subItems ? (
+                            <>
+                                <button
+                                    className="menu-toggle"
+                                    onClick={() => toggleMenu(index)}
+                                >
+                                    {item.name}
+                                    <span className="arrow">
+                                        {openMenus[index] ? '▼' : '▶'}
+                                    </span>
+                                </button>
+                                {openMenus[index] && (
+                                    <ul className="submenu">
+                                        {item.subItems.map((subItem, subIndex) => (
+                                            <li key={subIndex} className="submenu-item">
+                                                <a href={subItem.path}>{subItem.name}</a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </>
+                        ) : (
+                            <a href={item.path}>{item.name}</a>
+                        )}
                     </li>
                 ))}
             </ul>
+
+            {/* Footer */}
+            <div className="sidebar-footer">Footer Content</div>
         </nav>
     );
 };

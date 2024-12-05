@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import './index.css';
 import WelcomePage from './Onboarding/WelcomePage';
 import ContactPage from './Onboarding/Basisinformatie';
 import TypeHoreca from "./Onboarding/TypeHoreca";

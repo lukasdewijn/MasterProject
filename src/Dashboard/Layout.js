@@ -1,17 +1,17 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Sidebar from './Sidebar'; // Import the reusable Sidebar component
+import Sidebar from './Sidebar'; // Sidebar component
 import './Layout.css';
+import '../index.css';
 
-const Layout = () => {
+const Layout = ({ children }) => {
     return (
         <div className="layout-container">
             {/* Sidebar */}
-            <Sidebar /> {/* Replace inline sidebar with the reusable Sidebar component */}
+            <Sidebar />
 
             {/* Main Content */}
             <div className="main-content">
-                <Outlet /> {/* This renders the content of the current route */}
+                {children} {/* Render wrapped content */}
             </div>
 
             {/* Filter Bar */}
