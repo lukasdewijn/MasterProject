@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Layout from './layoutOnboarding';
 import './ClienteleAnalysis.css';
 
+import { useOnboarding } from './OnboardingContext'; // Import context
+
 import Budgetbewust from '../profielen/Budgetbewust.png';
 import Fijnproever from '../profielen/Fijn-proever.png';
 import Gezondheidsbewuste from '../profielen/Gezondheidsbewuste.png';
@@ -25,18 +27,27 @@ const personas = [
 
 const ClienteleAnalysis = () => {
     const navigate = useNavigate();
+    const { onboardingData, updateOnboardingData } = useOnboarding(); // Use context
+
     const [percentages, setPercentages] = useState(
+        onboardingData.personaDistribution ||
         personas.reduce((acc, persona) => {
-            acc[persona.name] = 0; // Start all sliders at 0
+            acc[persona.name] = 0; // Start all sliders at 0 or use existing data
             return acc;
         }, {})
     );
 
     const handleSliderChange = (name, value) => {
-        setPercentages(prev => ({
+        setPercentages((prev) => ({
             ...prev,
-            [name]: parseInt(value)
+            [name]: parseInt(value, 10),
         }));
+    };
+
+    const handleNext = () => {
+        updateOnboardingData('personaDistribution', percentages); // Save data to context
+        console.log('Final Onboarding Data:', { ...onboardingData, personaDistribution: percentages });
+        navigate('/toerisme'); // Navigate to the next page
     };
 
     return (
@@ -57,7 +68,7 @@ const ClienteleAnalysis = () => {
                                 value={percentages[persona.name]}
                                 className="clientele-slider-horizontal"
                                 style={{
-                                    background: `linear-gradient(to right, #FA954B> ${percentages[persona.name]}%, #F9D8B4 ${percentages[persona.name]}%)`
+                                    background: `linear-gradient(to right, #FA954B ${percentages[persona.name]}%, #F9D8B4 ${percentages[persona.name]}%)`,
                                 }}
                                 onChange={(e) => handleSliderChange(persona.name, e.target.value)}
                             />
@@ -65,7 +76,9 @@ const ClienteleAnalysis = () => {
                     ))}
                 </div>
                 <div className="start-button-container">
-                    <button className="start-button" onClick={() => navigate('/toerisme')}>Volgende</button>
+                    <button className="start-button" onClick={handleNext}>
+                        Volgende
+                    </button>
                 </div>
             </div>
         </Layout>

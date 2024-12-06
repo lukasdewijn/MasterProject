@@ -1,46 +1,38 @@
 import React, { useState } from 'react';
 import './Sidebar.css';
 
-const Sidebar = () => {
-    const [openMenus, setOpenMenus] = useState({}); // Houd bij welke menu's geopend zijn
+const Sidebar = ({ onSelectionChange }) => {
+    const [openMenu, setOpenMenu] = useState(null); // Track which menu is open
+    const [selectedItem, setSelectedItem] = useState(null); // Track the selected sub-item
 
-    const menuItems = [
-        {
-            name: 'Soft drinks',
-            subItems: [
-                { name: 'Coca-Cola', path: '/soft-drinks/coca-cola' },
-                { name: 'Sprite', path: '/soft-drinks/sprite' },
-            ],
-        },
-        {
-            name: 'Hot drinks',
-            subItems: [
-                { name: 'Coffee', path: '/hot-drinks/coffee' },
-                { name: 'Tea', path: '/hot-drinks/tea' },
-            ],
-        },
-        {
-            name: 'Cocktail',
-            subItems: [
-                { name: 'Mojito', path: '/cocktail/mojito' },
-                { name: 'Margarita', path: '/cocktail/margarita' },
-            ],
-        },
-        { name: 'Top & worst sellers', path: '/top-worst' },
-        { name: 'Gainers & losers', path: '/gainers-losers' },
-        { name: 'Hot', path: '/hot' },
-        { name: 'Hot for season', path: '/hot-season' },
-        { name: 'Promotions', path: '/promotions' },
-        { name: 'Price comparison', path: '/price-comparison' },
-        { name: 'Price optimisation', path: '/price-optimisation' },
-        { name: 'Segment sizes', path: '/segment-sizes' },
+    // Define shared subitems
+    const sharedSubItems = [
+        { name: 'Top & worst sellers', id: 'top-worst-sellers' },
+        { name: 'Gainers & losers', id: 'gainers-losers' },
+        { name: 'Trending', id: 'trending' },
+        { name: 'Hot for season', id: 'hot-for-season' },
+        { name: 'Promotions', id: 'promotions' },
+        { name: 'Price comparison', id: 'price-comparison' },
+        { name: 'Price optimisation', id: 'price-optimisation' },
+        { name: 'Segment sizes', id: 'segment-sizes' },
     ];
 
-    const toggleMenu = (index) => {
-        setOpenMenus((prev) => ({
-            ...prev,
-            [index]: !prev[index],
-        }));
+    // Use shared subitems for all main menu items
+    const menuItems = [
+        { name: 'Soft drinks', id: 'soft-drinks', subItems: sharedSubItems },
+        { name: 'Hot drinks', id: 'hot-drinks', subItems: sharedSubItems },
+        { name: 'Cocktail', id: 'cocktail', subItems: sharedSubItems },
+        { name: 'Beer', id: 'beer', subItems: sharedSubItems },
+        { name: 'Meals', id: 'meals', subItems: sharedSubItems },
+    ];
+
+    const toggleMenu = (index, menuId) => {
+        setOpenMenu((prevIndex) => (prevIndex === index ? null : index));
+    };
+
+    const handleSubItemClick = (menuId, subItemId) => {
+        setSelectedItem({ menuId, subItemId });
+        onSelectionChange({ menuId, subItemId }); // Notify parent component of selection change
     };
 
     return (
@@ -54,24 +46,50 @@ const Sidebar = () => {
                     <li key={index} className="menu-item">
                         {item.subItems ? (
                             <>
+                                {/* Parent menu toggle */}
                                 <button
                                     className="menu-toggle"
-                                    onClick={() => toggleMenu(index)}
+                                    onClick={() => toggleMenu(index, item.id)}
                                 >
                                     {item.name}
                                     <span className="arrow">
-                                        {openMenus[index] ? '▼' : '▶'}
+                                        {openMenu === index ? 'v' : '>'}
                                     </span>
                                 </button>
-                                {openMenus[index] && (
+
+                                {/* Submenu logic */}
+                                {openMenu === index ? (
                                     <ul className="submenu">
                                         {item.subItems.map((subItem, subIndex) => (
-                                            <li key={subIndex} className="submenu-item">
-                                                <a href={subItem.path}>{subItem.name}</a>
+                                            <li
+                                                key={subIndex}
+                                                className={`submenu-item ${
+                                                    selectedItem?.menuId === item.id &&
+                                                    selectedItem?.subItemId === subItem.id
+                                                        ? 'active'
+                                                        : ''
+                                                }`}
+                                                onClick={() =>
+                                                    handleSubItemClick(item.id, subItem.id)
+                                                }
+                                            >
+                                                {subItem.name}
                                             </li>
                                         ))}
                                     </ul>
-                                )}
+                                ) : selectedItem?.menuId === item.id ? (
+                                    <ul className="submenu collapsed">
+                                        {/* Only show the active subitem */}
+                                        <li className="submenu-item active">
+                                            {
+                                                item.subItems.find(
+                                                    (subItem) =>
+                                                        subItem.id === selectedItem.subItemId
+                                                )?.name
+                                            }
+                                        </li>
+                                    </ul>
+                                ) : null}
                             </>
                         ) : (
                             <a href={item.path}>{item.name}</a>

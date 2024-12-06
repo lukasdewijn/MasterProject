@@ -3,11 +3,11 @@ import Sidebar from './Sidebar'; // Sidebar component
 import './Layout.css';
 import '../index.css';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, onSelectionChange }) => {
     return (
         <div className="layout-container">
             {/* Sidebar */}
-            <Sidebar />
+            <Sidebar onSelectionChange={onSelectionChange} />
 
             {/* Main Content */}
             <div className="main-content">

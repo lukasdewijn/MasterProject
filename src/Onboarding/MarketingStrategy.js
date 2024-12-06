@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from './layoutOnboarding';
 import './MarketingStrategy.css';
+import { useOnboarding } from './OnboardingContext'; // Import context
 
 const MarketingStrategy = () => {
     const navigate = useNavigate();
-    const [selectedStrategies, setSelectedStrategies] = useState([]);
+    const { onboardingData, updateOnboardingData } = useOnboarding(); // Gebruik context
+    const [selectedStrategies, setSelectedStrategies] = useState(onboardingData.marketingStrategies || []); // Initialiseer met contextdata of leeg
 
     const strategies = [
-        "Social Media", "E-mail", "Samenwerking met Influencers", "Search Engine Optimalization",
+        "Geen Marketing", "Social Media", "E-mail", "Samenwerking met Influencers", "Search Engine Optimalization",
         "Website", "Lokale Evenementen", "Flyers en Drukwerk", "Advertenties op Sociale Media",
         "Samenwerking met Lokale Bedrijven", "Referral Programma", "Seizoensgebonden Acties"
     ];
@@ -19,6 +21,13 @@ const MarketingStrategy = () => {
                 ? prevState.filter(item => item !== strategy)
                 : [...prevState, strategy]
         );
+    };
+
+    const handleNext = () => {
+        updateOnboardingData('marketingStrategies', selectedStrategies); // Sla geselecteerde strategieën op in de context
+        console.log('Updated Marketing Strategies:', selectedStrategies); // Log geselecteerde strategieën
+        console.log('Final Onboarding Data:', { ...onboardingData, marketingStrategies: selectedStrategies }); // Log het volledige onboardingData-object
+        navigate('/belangrijker1'); // Ga naar de volgende pagina
     };
 
     return (
@@ -37,7 +46,9 @@ const MarketingStrategy = () => {
                 </div>
             </div>
             <div className="start-button-container">
-                <button className="start-button" onClick={() => navigate('/next-page')}>Volgende</button>
+                <button className="start-button" onClick={handleNext}>
+                    Volgende
+                </button>
             </div>
         </Layout>
     );

@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from './layoutOnboarding';
 import './Kenmerken.css';
+import { useOnboarding } from './OnboardingContext'; // Import the context hook
 
 const Kenmerken = () => {
     const navigate = useNavigate();
-
-    // State to hold selected options for each category
-    const [selectedOptions, setSelectedOptions] = useState({
+    const { onboardingData, updateOnboardingData } = useOnboarding(); // Destructure context
+    const [selectedOptions, setSelectedOptions] = useState(onboardingData.kenmerken || {
         algemeenType: [],
         specialiteit: [],
         locatietype: [],
         keuken: [],
         sfeer: [],
         kenmerken: []
-    });
+    }); // Initialize with context data if available
 
     const categories = {
         algemeenType: ["Fine Dining", "Casual Dining", "Fast Casual", "Fast Food", "Buffet", "Café", "Bistro", "Brasserie"],
@@ -29,17 +29,24 @@ const Kenmerken = () => {
         setSelectedOptions(prevState => {
             const selected = prevState[category];
             const isSelected = selected.includes(option);
-            return {
+            const updatedOptions = {
                 ...prevState,
                 [category]: isSelected ? selected.filter(item => item !== option) : [...selected, option]
             };
+            updateOnboardingData('kenmerken', updatedOptions); // Update the context with the new state
+            return updatedOptions;
         });
+    };
+
+    const handleNext = () => {
+        console.log('Final Onboarding Data before navigation:', onboardingData); // Log the updated onboarding data
+        navigate('/leeftijdsverdeling');
     };
 
     return (
         <Layout title="Kenmerken" progress={60}>
             <div className="kenmerken-container">
-                <h1 style={{marginBottom: "1rem" }}>Duid alle kenmerken aan die bij uw zaak passen.</h1>
+                <h1 style={{ marginBottom: "1rem" }}>Duid alle kenmerken aan die bij uw zaak passen.</h1>
                 <div className="kenmerken-groepen">
                     {Object.keys(categories).map((category, index) => (
                         <div key={index} className="category-section">
@@ -60,7 +67,9 @@ const Kenmerken = () => {
                 </div>
             </div>
             <div className="start-button-container">
-                <button className="start-button" onClick={() => navigate('/leeftijdsverdeling')}>Volgende</button>
+                <button className="start-button" onClick={handleNext}>
+                    Volgende
+                </button>
             </div>
         </Layout>
     );

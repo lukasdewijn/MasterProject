@@ -2,10 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from './layoutOnboarding';
 import './ToerismeAnalysis.css';
+import { useOnboarding } from './OnboardingContext'; // Import context
 
 const ToerismeAnalysis = () => {
     const navigate = useNavigate();
-    const [percentage, setPercentage] = useState(50); // Initial ratio of 50%
+    const { onboardingData, updateOnboardingData } = useOnboarding(); // Gebruik context
+    const [percentage, setPercentage] = useState(onboardingData.toerismePercentage || 50); // Initialiseer met eerder opgeslagen waarde of 50%
     const sliderRef = useRef(null);
     const tooltipRef = useRef(null);
 
@@ -26,7 +28,14 @@ const ToerismeAnalysis = () => {
     }, [percentage]);
 
     const handleSliderChange = (value) => {
-        setPercentage(parseInt(value));
+        setPercentage(parseInt(value, 10));
+    };
+
+    const handleNext = () => {
+        updateOnboardingData('toerismePercentage', percentage); // Sla de waarde op in de context
+        console.log('Updated Toerisme Percentage:', percentage); // Log het bijgewerkte percentage
+        console.log('Final Onboarding Data:', { ...onboardingData, toerismePercentage: percentage }); // Toon de volledige context in de console
+        navigate('/uploadmenu'); // Ga naar de volgende pagina
     };
 
     return (
@@ -55,7 +64,9 @@ const ToerismeAnalysis = () => {
                 </div>
             </div>
             <div className="start-button-container">
-                <button className="start-button" onClick={() => navigate('/uploadmenu')}>Volgende</button>
+                <button className="start-button" onClick={handleNext}>
+                    Volgende
+                </button>
             </div>
         </Layout>
     );
